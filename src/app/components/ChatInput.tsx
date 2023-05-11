@@ -12,6 +12,7 @@ interface ChatInputProps extends HTMLAttributes<HTMLDivElement> {}
 const ChatInput: FC<ChatInputProps> = ({ className, ...props }) => {
   const [input, setInput] = useState<string>("");
   const { mutate: sendMessage, isLoading } = useMutation({
+    mutationKey: ["sendMessage"],
     mutationFn: async (message: Message) => {
       const response = await fetch("/api/message", {
         method: "POST",
